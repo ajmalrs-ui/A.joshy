@@ -11,33 +11,23 @@ const WEDDING_DATE = new Date('2026-08-23T17:30:00+05:30');
 
 // ── Attendee tracking ──────────────────────
 const ATTENDEES_KEY = 'anjana_akshay_attendees_2026';
-const SWIPE_COUNT_KEY = 'anjana_akshay_swipe_count_2026';
 
 function getAttendeeCount() {
   return parseInt(localStorage.getItem(ATTENDEES_KEY) || '0', 10);
 }
 
-function getSwipeCount() {
-  return parseInt(localStorage.getItem(SWIPE_COUNT_KEY) || '0', 10);
-}
-
 function addAttendee() {
   const current = getAttendeeCount();
   const next = current + 1;
-  const swipeCount = getSwipeCount();
-  const nextSwipeCount = swipeCount + 1;
   
-  // Only reset after 10 swipes (one-time only)
-  if (nextSwipeCount >= 10) {
-    localStorage.setItem(ATTENDEES_KEY, '0');
-    localStorage.setItem(SWIPE_COUNT_KEY, '10'); // Mark that reset has occurred
+  // Reset to 1 after reaching 10 (cycling: 1-10, then repeat)
+  if (next > 10) {
+    localStorage.setItem(ATTENDEES_KEY, '1');
+    return 1;
   } else {
     localStorage.setItem(ATTENDEES_KEY, String(next));
-    localStorage.setItem(SWIPE_COUNT_KEY, String(nextSwipeCount));
+    return next;
   }
-  
-  updateAttendeeDisplay();
-  return next;
 }
 
 function updateAttendeeDisplay() {
