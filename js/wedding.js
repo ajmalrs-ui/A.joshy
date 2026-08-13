@@ -374,6 +374,39 @@ function vibrate(pattern) {
 swipeThumb.addEventListener('touchstart', () => vibrate(10), { passive: true });
 
 /* ════════════════════════════════════════════
+   CARD DOWNLOAD FUNCTIONALITY
+════════════════════════════════════════════ */
+(function initCardDownloads() {
+  const downloadButtons = document.querySelectorAll('.card-download-btn');
+  
+  downloadButtons.forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const cardNum = btn.getAttribute('data-card');
+      const imageFile = cardNum === '1' 
+        ? 'assets/IMG-20260811-WA0089 (1).jpg'
+        : 'assets/IMG-20260811-WA0090.jpg';
+      
+      try {
+        const response = await fetch(imageFile);
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `Anjana-Akshay-Wedding-Card-${cardNum}.jpg`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      } catch (err) {
+        console.error('Download failed:', err);
+        alert('Failed to download image. Please try again.');
+      }
+    });
+  });
+})();
+
+/* ════════════════════════════════════════════
    LUCIDE ICONS — initialise all data-lucide
 ════════════════════════════════════════════ */
 if (typeof lucide !== 'undefined') lucide.createIcons();

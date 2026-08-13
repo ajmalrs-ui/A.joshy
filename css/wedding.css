@@ -1084,6 +1084,45 @@ img { display: block; }
   display: block;
 }
 
+/* ── Wedding Card Wrapper and Download Button ── */
+.wedding-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.card-download-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.card-download-btn:hover {
+  background: var(--primary-dark);
+  transform: scale(1.02);
+}
+
+.card-download-btn:active {
+  transform: scale(0.98);
+}
+
+.card-download-btn i {
+  width: 16px;
+  height: 16px;
+}
+
 /* ── Downloads ───────────────────────────── */
 .download-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .download-card {
