@@ -529,7 +529,7 @@ img { display: block; }
 /* ════════════════════════════════════════════
    DETAILS PAGE
 ════════════════════════════════════════════ */
-#details { background: #fff; }
+#details { background: #F5F1E6; }
 
 /* ── Hero header ─────────────────────────── */
 .details-hero {
@@ -554,8 +554,8 @@ img { display: block; }
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg,
-    rgba(180,80,160,0.05) 0%,
-    rgba(180,80,160,0.08) 100%);
+    rgba(46,74,50,0.08) 0%,
+    rgba(46,74,50,0.12) 100%);
 }
 
 /* Music pill on details page */
