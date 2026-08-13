@@ -18,9 +18,17 @@ function getAttendeeCount() {
 
 function addAttendee() {
   const current = getAttendeeCount();
-  localStorage.setItem(ATTENDEES_KEY, String(current + 1));
+  const next = current + 1;
+  
+  // Reset to 0 after reaching 10 (so next swipe starts from 1)
+  if (next >= 10) {
+    localStorage.setItem(ATTENDEES_KEY, '0');
+  } else {
+    localStorage.setItem(ATTENDEES_KEY, String(next));
+  }
+  
   updateAttendeeDisplay();
-  return current + 1;
+  return next;
 }
 
 function updateAttendeeDisplay() {
