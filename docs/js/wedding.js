@@ -40,6 +40,13 @@ function updateAttendeeDisplay() {
 
 // Initialize on page load
 window.addEventListener('load', () => {
+  // One-time migration: clear old counter format on first load after update
+  const migrationKey = 'anjana_akshay_migrated_v2';
+  if (!localStorage.getItem(migrationKey)) {
+    localStorage.setItem(ATTENDEES_KEY, '0');
+    localStorage.removeItem('anjana_akshay_swipe_count_2026');
+    localStorage.setItem(migrationKey, 'true');
+  }
   updateAttendeeDisplay();
 });
 
