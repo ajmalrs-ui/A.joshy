@@ -740,6 +740,61 @@ img { display: block; }
 }
 .sdt-cal-btn:active { background: var(--primary-dark); transform: scale(0.97); }
 
+/* ── Attendee Counter Card ──────────────────── */
+.attendee-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 20px 20px;
+  margin: 10px 0 16px;
+  background: linear-gradient(135deg, rgba(46,74,50,0.08) 0%, rgba(168,136,66,0.06) 100%);
+  border: 1.5px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(46,74,50,0.08);
+}
+
+.attendee-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--primary);
+}
+
+.attendee-title {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--primary);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.attendee-count-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.attendee-number {
+  font-family: 'Sora', var(--font-sans);
+  font-size: 48px;
+  font-weight: 600;
+  color: var(--primary);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.attendee-label {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-body);
+  letter-spacing: -0.01em;
+}
+
 /* ── Section heading ─────────────────────── */
 .card-section { margin-top: 22px; }
 .section-heading {

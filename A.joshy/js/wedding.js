@@ -9,6 +9,33 @@
 // ── Wedding date target ────────────────────
 const WEDDING_DATE = new Date('2026-08-23T17:30:00+05:30');
 
+// ── Attendee tracking ──────────────────────
+const ATTENDEES_KEY = 'anjana_akshay_attendees_2026';
+
+function getAttendeeCount() {
+  return parseInt(localStorage.getItem(ATTENDEES_KEY) || '0', 10);
+}
+
+function addAttendee() {
+  const current = getAttendeeCount();
+  localStorage.setItem(ATTENDEES_KEY, String(current + 1));
+  updateAttendeeDisplay();
+  return current + 1;
+}
+
+function updateAttendeeDisplay() {
+  const count = getAttendeeCount();
+  const attendeeEl = document.getElementById('attendee-count');
+  if (attendeeEl) {
+    attendeeEl.textContent = count;
+  }
+}
+
+// Initialize on page load
+window.addEventListener('load', () => {
+  updateAttendeeDisplay();
+});
+
 // ── DOM refs ───────────────────────────────
 const splash        = document.getElementById('splash');
 const details       = document.getElementById('details');
@@ -161,12 +188,15 @@ setInterval(updateCountdown, 1000);
     swipeFill.style.transition  = 'width 0.3s ease';
     setThumbX(maxTravel);
 
+    // ── Add attendee to counter ────────────────────
+    const attendeeCount = addAttendee();
+
     swipeTrack.classList.add('done');
     swipeLabel.style.opacity    = '0';
     swipeLabel.style.paddingLeft = '0';
 
     setTimeout(() => {
-      swipeLabel.textContent   = 'See you there! ✓';
+      swipeLabel.textContent   = `Thanks! You're #${attendeeCount} ✓`;
       swipeLabel.style.opacity = '1';
     }, 250);
 
